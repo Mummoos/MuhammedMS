@@ -4,6 +4,7 @@
 #include "WiFi.h"
 #include "esp_camera.h"
 
+
 #define PWDN_GPIO_NUM     32
 #define RESET_GPIO_NUM    -1
 #define XCLK_GPIO_NUM      0
@@ -41,7 +42,7 @@ void connectAWS()
     delay(500);
     Serial.print(".");
   }
-
+ Serial.print("wifi_connected");
   // Configure WiFiClientSecure to use the AWS IoT device credentials
   net.setCACert(AWS_CERT_CA);
   net.setCertificate(AWS_CERT_CRT);
@@ -57,7 +58,7 @@ void connectAWS()
 
   while (!client.connect(THINGNAME)) {
     Serial.print(".");
-    delay(100);
+    delay(1000);
   }
 
   if(!client.connected()){
